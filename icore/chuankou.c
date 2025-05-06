@@ -83,7 +83,6 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
                 point_data.light[1] = safe_parse_int(&p);
         }
      }
-        
         // 重新启动DMA接收
         HAL_UARTEx_ReceiveToIdle_DMA(&huart2, (uint8_t *)str, sizeof(str));
     }
