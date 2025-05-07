@@ -6,6 +6,11 @@
 
 extern char str[200];
 
+// 定义接收模式类型
+#define RECEIVE_MODE_UNKNOWN 0
+#define RECEIVE_MODE_RECTANGLE 1
+#define RECEIVE_MODE_GREEN_LASER 2
+
 typedef struct 
 {
     uint16_t x1;
@@ -46,5 +51,11 @@ typedef struct point
 }point;
 extern point point_data;
 extern zuobiao dingdian;
+
+// 串口初始化函数声明
+void chuankou_init(void);
+
+// 获取最后接收的数据类型
+uint8_t get_last_receive_mode(void);
 
 #endif
