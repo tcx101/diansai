@@ -70,20 +70,33 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
                 // 解析绿色激光点坐标
                 point_data.light[0] = safe_parse_int(&p);
                 point_data.light[1] = safe_parse_int(&p);
-							
+                HAL_UARTEx_ReceiveToIdle_DMA(&huart2, (uint8_t *)str, sizeof(str));			
             }
         }
         else if (str[0]=='@'&&str[1]=='G')
-       {
+        {
             char *endMarker = strchr(str, '#');
             if (endMarker != NULL)
             {
-                char *p = str + 1; 
-                point_data.light[0] = safe_parse_int(&p);
-                point_data.light[1] = safe_parse_int(&p);
+                // 跳过"@G,"前缀
+                char *p = str + 3; // 跳过@G,
+                
+                // 确保数据是有效的
+                if(*p != '\0' && *p != '#')
+                {
+                    // 解析绿色激光点坐标
+                    point_data.light[0] = safe_parse_int(&p);
+                    point_data.light[1] = safe_parse_int(&p);
+                }
+                else
+                {
+                    // 无效数据时，将坐标设为0
+                    point_data.light[0] = 0;
+                    point_data.light[1] = 0;
         }
      }
         // 重新启动DMA接收
         HAL_UARTEx_ReceiveToIdle_DMA(&huart2, (uint8_t *)str, sizeof(str));
     }
+}
 }
