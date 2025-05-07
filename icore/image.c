@@ -128,3 +128,12 @@ void Fill_YLine(int X1, int Y1, int X2, int Y2, int* y_line) {
         }
     }
 }
+uint16_t cal_mid(uint16_t point1,uint16_t point2)
+{
+    uint16_t mid_point;
+    mid_point=(point1+point2)/2;
+    return mid_point;
+}
+
+
+

@@ -1,5 +1,6 @@
 #include "pid.h"
-
+pid_t servo1;
+pid_t servo2;
 /*PID初始化部分*/
 void pid_init(pid_t *pid, uint32_t mode, float p, float i, float d)//用于定义pid名字，pid模式，PID值
 
@@ -39,6 +40,17 @@ void pid_cal(pid_t *pid)//需要pid的target和now，输出一个PID后的值
 
 }
 
+void PID_servo1()
+{
+	servo1.now=point_data.light[0];
+    pid_cal(&servo1);
+	set_servo(servo1_hadle,servo1.out);
 
+}
 
-
+void PID_servo2()
+{
+	servo2.now=point_data.light[1];
+    pid_cal(&servo2);
+	set_servo(servo2_hadle,servo2.out);
+}

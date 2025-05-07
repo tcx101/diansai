@@ -7,7 +7,7 @@ diansai\uart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
 diansai\uart.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 diansai\uart.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h
 diansai\uart.o: ../Drivers/CMSIS/Include/core_cm4.h
-diansai\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+diansai\uart.o: D:\kell5\core\ARM\ARMCC\Bin\..\include\stdint.h
 diansai\uart.o: ../Drivers/CMSIS/Include/cmsis_version.h
 diansai\uart.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 diansai\uart.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
@@ -15,7 +15,7 @@ diansai\uart.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 diansai\uart.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 diansai\uart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 diansai\uart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-diansai\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+diansai\uart.o: D:\kell5\core\ARM\ARMCC\Bin\..\include\stddef.h
 diansai\uart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
 diansai\uart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
 diansai\uart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h
@@ -36,9 +36,9 @@ diansai\uart.o: ../Core/Inc/dma.h
 diansai\uart.o: ../Core/Inc/tim.h
 diansai\uart.o: ../Core/Inc/usart.h
 diansai\uart.o: ../Core/Inc/gpio.h
-diansai\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-diansai\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-diansai\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+diansai\uart.o: D:\kell5\core\ARM\ARMCC\Bin\..\include\string.h
+diansai\uart.o: D:\kell5\core\ARM\ARMCC\Bin\..\include\stdio.h
+diansai\uart.o: D:\kell5\core\ARM\ARMCC\Bin\..\include\stdlib.h
 diansai\uart.o: ..\icore\KEY.h
 diansai\uart.o: ..\icore\headfile.h
 diansai\uart.o: ..\icore\servo.h
@@ -48,4 +48,5 @@ diansai\uart.o: ..\icore\image.h
 diansai\uart.o: ..\icore\lcd_init.h
 diansai\uart.o: ..\icore\chuankou.h
 diansai\uart.o: ..\icore\uart.h
+diansai\uart.o: ..\icore\pid.h
 diansai\uart.o: ..\icore\ALL_INIT.h

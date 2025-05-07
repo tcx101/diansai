@@ -1,31 +1,3 @@
-*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'diansai'
-compiling chuankou.c...
-../icore/KEY.h(13): warning:  #1295-D: Deprecated declaration key_scan - give arg types
-  void key_scan();
-../icore/KEY.h(14): warning:  #1295-D: Deprecated declaration key_start - give arg types
-  void key_start();
-../icore/KEY.h(15): warning:  #1295-D: Deprecated declaration key_function - give arg types
-  void key_function();
-../icore/KEY.h(16): warning:  #1-D: last line of file ends without a newline
-  #endif
-../icore/flash.h(22): warning:  #1295-D: Deprecated declaration flash_set_buffer_PARA - give arg types
-  void flash_set_buffer_PARA();
-../icore/flash.h(23): warning:  #1295-D: Deprecated declaration flash_get_buffer_PARA - give arg types
-  void flash_get_buffer_PARA();
-../icore/uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
-  void uart_R_start();
-../icore/uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
-  void uart_T_yes();
-../icore/uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
-  void uart_T_no();
-../icore/uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
-  void uart_R_test();
-../icore/ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
-  void All_init();
-..\icore\chuankou.c: 11 warnings, 0 errors
-linking...
-Program Size: Code=15028 RO-data=592 RW-data=40 ZI-data=7408  
-FromELF: creating hex file...
-"diansai\diansai.axf" - 0 Error(s), 11 Warning(s).
-Build Time Elapsed:  00:00:02
+Load "diansai\\diansai.axf" 
+Erase Done.Programming Done.Verify OK.Application running ...
+Flash Load finished at 16:25:42

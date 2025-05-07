@@ -23,9 +23,9 @@ uint16_t safe_parse_int(char **ptr)
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
-    if (huart == &huart1 && Size > 0)
+    if (huart == &huart2 && Size > 0)
     {
-		HAL_UART_Transmit_DMA(&huart1,R_data,strlen((char*)R_data));
+		
         // 检查是否收到完整数据（以@开头，以#结尾）
         if (str[0] == '@')
         {

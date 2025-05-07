@@ -108,13 +108,6 @@ int main(void)
   MX_TIM14_Init();
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
-	test1=66;
-	point_data.A1[0]=20;
-	point_data.A1[1]=30;
-	
-	point_data.B1[0]=50;
-	point_data.B1[1]=40;
-	
 	All_init();
 	
   /* USER CODE END 2 */
@@ -123,9 +116,26 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	 test2=point_data.A1[0];
-	 Fill_YLine(20, 20, 10, 40, AB_line);
-	 key_function();      	
+
+	 /*连线AB*/
+	 Fill_YLine(cal_mid(point_data.A1[0],point_data.A2[0]), cal_mid(point_data.A1[1],point_data.A2[1]),cal_mid( point_data.B1[0],point_data.B2[0]), cal_mid(point_data.B1[1],point_data.B2[1]), AB_line);
+   /*连线BC*/
+   Fill_XLine(cal_mid(point_data.B1[0],point_data.B2[0]), cal_mid(point_data.B1[1],point_data.B2[1]),cal_mid(point_data.C1[0],point_data.C2[0]), cal_mid(point_data.C1[1],point_data.C2[1]), BC_line);
+  /*连线CD*/
+  Fill_YLine(cal_mid(point_data.C1[0],point_data.C2[0]), cal_mid(point_data.C1[1],point_data.C2[1]),cal_mid(point_data.D1[0],point_data.D2[0]), cal_mid(point_data.D1[1],point_data.D2[1]), CD_line);
+  /*连线AD*/
+  Fill_XLine(cal_mid(point_data.A1[0],point_data.A2[0]), cal_mid(point_data.A1[1],point_data.A2[1]), cal_mid(point_data.D1[0],point_data.D2[0]), cal_mid(point_data.D1[1],point_data.D2[1]), AD_line);
+
+  LCD_ShowIntNum(0,0,point_data.light[0],3,BLACK,WHITE,16);//显示整数变量
+  LCD_ShowIntNum(0,20,point_data.light[1],3,BLACK,WHITE,16);//显示整数变量
+
+  LCD_ShowIntNum(50,0,point_data.A1[0],3,BLACK,WHITE,16);//显示整数变量
+  LCD_ShowIntNum(50,20,point_data.A1[1],3,BLACK,WHITE,16);//显示整数变量
+
+  LCD_ShowIntNum(100,0,point_data.mid[0],3,BLACK,WHITE,16);//显示整数变量
+  LCD_ShowIntNum(100,20,point_data.mid[1],3,BLACK,WHITE,16);//显示整数变量
+  
+	 key_function();  
 		
     /* USER CODE END WHILE */
 

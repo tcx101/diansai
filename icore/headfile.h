@@ -28,5 +28,6 @@ extern _Bool servo1_flag;
 #include "lcd_init.h"
 #include "chuankou.h"
 #include "uart.h"
+#include "pid.h"
 #include "ALL_INIT.h"
 #endif

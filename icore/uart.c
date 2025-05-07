@@ -156,7 +156,7 @@ char T_data[50];
 
 void uart_R_start()
 {
-	HAL_UARTEx_ReceiveToIdle_DMA(&huart1,R_data,sizeof(R_data));
+	HAL_UARTEx_ReceiveToIdle_DMA(&huart2, (uint8_t *)str, sizeof(str));
 }
 
 /*·¢ËÍ*/
