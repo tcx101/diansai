@@ -11,6 +11,8 @@ void All_init()
 	
 	LCD_Fill(0, 0, 128, 160, WHITE);
 	
+	init_pid_parameters();
+
 	servo_init(servo1_hadle);
 	
 	servo_init(servo2_hadle);
