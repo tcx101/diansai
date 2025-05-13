@@ -13,6 +13,7 @@ typedef union                                                                   
     uint8_t   uint8_type;                     // uint8  类型
     int8_t    int8_type;                     // int8   类型
 }flash_data_union;
+
 #define EEPROM_PAGE_LENGTH           (1024)  
 #define FLASH_PAGE_SIZE    1024    // 假设页大小为 1 KB
 #define FLASH_PAGE_NUM_MAX 11      // 最大页号
@@ -21,5 +22,5 @@ extern float test;
 extern flash_data_union flash_union_buffer[EEPROM_PAGE_LENGTH]; 
 void flash_set_buffer_PARA();
 void flash_get_buffer_PARA();
-
+void flash_set_buffer_PID(uint16_t page_offset) ;
 #endif

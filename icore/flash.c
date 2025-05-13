@@ -1,7 +1,7 @@
 #include "headfile.h"
 float test;
 flash_data_union flash_union_buffer[EEPROM_PAGE_LENGTH];  // FLASH 操作的数据缓冲区
-
+#define FLASH_BUFFER_SIZE 32  // 根据实际需求调整
 // 在 STM32 中模拟页擦除（假设每页对应一个扇区）
 void stm32_flash_erase_page(uint32_t page_num) {
     FLASH_EraseInitTypeDef eraseConfig;
@@ -168,6 +168,54 @@ void flash_get_buffer_PARA()
 	test=flash_union_buffer[1].float_type;
 	
 	
+}
+
+/**
+  * @brief 将参数写入Flash扇区
+  * @param sector_num : 目标扇区编号（STM32F407的扇区5起始地址为0x08020000）
+  * @param page_offset : 页偏移量（0-127，每个页为1KB）
+  */
+void flash_set_buffer_PID(uint16_t page_offset) 
+{
+    // 1. 解锁Flash
+    if(HAL_FLASH_Unlock() != HAL_OK) {
+        Error_Handler(); // 自定义错误处理函数[3,9](@ref)
+    }
+
+    // 2. 填充数据到缓冲区
+    memset(flash_union_buffer, 0xFF, sizeof(flash_union_buffer));
+		
+    flash_union_buffer[0].float_type = 66;
+//    flash_union_buffer[1].float_val = motor_L.i;
+    // ...其他参数填充（与原函数一致）
+
+    // 3. 计算目标地址（扇区5起始地址0x08020000）
+    uint32_t target_addr = 0x08020000 + (page_offset * 1024); 
+
+    // 4. 擦除操作（必须按扇区擦除）
+    FLASH_EraseInitTypeDef erase_config = {
+        .TypeErase   = FLASH_TYPEERASE_SECTORS,
+        .Sector      = 0x08020000,
+        .NbSectors   = 1,
+        .VoltageRange= FLASH_VOLTAGE_RANGE_3
+    };
+    uint32_t sector_error;
+    
+    if(HAL_FLASHEx_Erase(&erase_config, &sector_error) != HAL_OK) {
+        Error_Handler(); // 擦除失败处理[3,9](@ref)
+    }
+
+    // 5. 按32位字写入（强制对齐）
+    for(int i=0; i<FLASH_BUFFER_SIZE; i++) {
+        if(HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, 
+                           target_addr + (i*4),
+                           flash_union_buffer[i].uint32_type) != HAL_OK) {
+            Error_Handler(); // 写入失败处理[3,9](@ref)
+        }
+    }
+
+    // 6. 重新上锁
+    HAL_FLASH_Lock();
 }
 
 

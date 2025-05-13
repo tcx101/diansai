@@ -135,5 +135,22 @@ uint16_t cal_mid(uint16_t point1,uint16_t point2)
     return mid_point;
 }
 
+int scale_480_to_128(int input) {
+    // 边界保护
+    if(input <= 0) return 0;
+    if(input >= 480) return 128;
+    
+    // 精确计算（四舍五入）
+    return (int)(input * 0.2666666667f + 0.5f); // 128/480 ≈ 0.2666667
+}
+
+int scale_320_to_64(int input) {
+    // 边界保护
+    if(input <= 0) return 0;
+    if(input >= 320) return 64;
+    
+    // 精确计算（四舍五入）
+    return (int)(input * 0.2f + 0.5f); // 64/320 = 0.2
+}
 
 

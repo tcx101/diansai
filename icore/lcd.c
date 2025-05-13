@@ -579,4 +579,62 @@ void LCD_Address_Set(uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2)
     LCD_WR_REG(0x2C);    // 准备写入显示RAM
 }
 
+void LCD_show()
+{
+	
+	  if(page==1)
+	  {
+		
+			LCD_Fill(0, 0, 128, 90, WHITE);
+			/*AB*/
+      LCD_DrawLine(scale_480_to_128(cal_mid(point_data.A1[0],point_data.A2[0])), scale_480_to_128(cal_mid(point_data.A1[1],point_data.A2[1])),scale_480_to_128(cal_mid( point_data.B1[0],point_data.B2[0])),scale_480_to_128( cal_mid(point_data.B1[1],point_data.B2[1])),RED);
+		  /*BC*/
+			LCD_DrawLine(scale_480_to_128(cal_mid(point_data.B1[0],point_data.B2[0])), scale_480_to_128(cal_mid(point_data.B1[1],point_data.B2[1])),scale_480_to_128(cal_mid( point_data.C1[0],point_data.C2[0])),scale_480_to_128( cal_mid(point_data.C1[1],point_data.C2[1])),YELLOW);
+			/*CD*/
+      LCD_DrawLine(scale_480_to_128(cal_mid(point_data.C1[0],point_data.C2[0])), scale_480_to_128(cal_mid(point_data.C1[1],point_data.C2[1])),scale_480_to_128(cal_mid( point_data.D1[0],point_data.D1[0])),scale_480_to_128( cal_mid(point_data.D1[1],point_data.D2[1])),BLUE);
+      /*AD*/
+      LCD_DrawLine(scale_480_to_128(cal_mid(point_data.A1[0],point_data.A2[0])), scale_480_to_128(cal_mid(point_data.A1[1],point_data.A2[1])),scale_480_to_128(cal_mid( point_data.D1[0],point_data.D1[0])),scale_480_to_128( cal_mid(point_data.D1[1],point_data.D2[1])),GREEN);
+			/*激光点*/
+			LCD_DrawPoint(scale_480_to_128(point_data.light[0]),scale_480_to_128(point_data.light[1]),GREEN);
+			/*中点*/
+      LCD_DrawPoint(scale_480_to_128(point_data.mid[0]),scale_480_to_128(point_data.mid[0]),BROWN);
+			
+//    LCD_DrawPoint(scale_480_to_128(point_data.light[0]-1),scale_320_to_64(point_data.light[1]),GREEN);		
+//	  LCD_DrawPoint(scale_480_to_128(point_data.light[0]),scale_320_to_64(point_data.light[1]-1),GREEN);
+//	  LCD_DrawPoint(scale_480_to_128(point_data.light[0]),scale_320_to_64(point_data.light[1]+1),GREEN);
+			
+		LCD_ShowString(X_1,Y_7,"S1P:",BLACK,WHITE,16,0);
+		LCD_ShowIntNum(X_5,Y_7,servo1.p,2,BLACK,WHITE,16);
+			
+	  LCD_ShowString(X_8,Y_7,"S1D:",BLACK,WHITE,16,0);
+		LCD_ShowIntNum(X_12,Y_7,servo1.d,2,BLACK,WHITE,16);
+
+    LCD_ShowString(X_1,Y_8,"S2P:",BLACK,WHITE,16,0);
+		LCD_ShowIntNum(X_5,Y_8,servo2.p,2,BLACK,WHITE,16);
+			
+	  LCD_ShowString(X_8,Y_8,"S2D:",BLACK,WHITE,16,0);
+		LCD_ShowIntNum(X_12,Y_8,servo2.d,2,BLACK,WHITE,16);
+			
+	  LCD_ShowString(X_1,Y_9,"e1:",BLACK,WHITE,16,0);
+		LCD_ShowIntNum(X_4,Y_9,servo1.error[0],3,BLACK,WHITE,16);	
+			
+	  LCD_ShowString(X_8,Y_9,"e2:",BLACK,WHITE,16,0);
+		LCD_ShowIntNum(X_12,Y_9,servo2.error[0],3,BLACK,WHITE,16);			
+			
+	  LCD_ShowString(X_1,Y_10,"m:",BLACK,WHITE,16,0);
+		LCD_ShowIntNum(X_3,Y_10,mode,1,BLACK,WHITE,16);
+			
+	  LCD_ShowString(X_5,Y_10,"p:",BLACK,WHITE,16,0);
+		LCD_ShowIntNum(X_7,Y_10,page,1,BLACK,WHITE,16);				
+			
+		}
+		
+		
+		
+	
+}
+
+
+
+
 

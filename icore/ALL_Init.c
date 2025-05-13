@@ -6,15 +6,23 @@ void All_init()
 	key_start();
 
 	LCD_GPIO_Init();
+	
 	LCD_Init();
-	LCD_Fill(0, 0, 128, 180, WHITE);//ָ�����������ɫ
+	
+	LCD_Fill(0, 0, 128, 160, WHITE);
 
 	pid_init(&servo1,POSITION_PID,10,0,0);
+	
 	pid_init(&servo2,POSITION_PID,10,0,0);
 
 	servo_init(servo1_hadle);
+	
 	servo_init(servo2_hadle);
+	
 	chuankou_init();
+	
+	/*20ms中断*/
+	HAL_TIM_Base_Start_IT(&htim6);
 	
 }
 

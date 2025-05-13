@@ -695,6 +695,26 @@
               <FileType>5</FileType>
               <FilePath>..\icore\image.h</FilePath>
             </File>
+            <File>
+              <FileName>ISR.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\icore\ISR.c</FilePath>
+            </File>
+            <File>
+              <FileName>ISR.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\icore\ISR.h</FilePath>
+            </File>
+            <File>
+              <FileName>control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\icore\control.c</FilePath>
+            </File>
+            <File>
+              <FileName>control.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\icore\control.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

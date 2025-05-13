@@ -7,9 +7,14 @@
 
 
 #if USE_HORIZONTAL==0||USE_HORIZONTAL==1
+
 // 1.8寸ST7735LCD的标准分辨率
 #define LCD_W 128
 #define LCD_H 160
+#define LCD_size 16
+
+
+
 
 #else
 #define LCD_W 160

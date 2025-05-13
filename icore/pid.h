@@ -23,11 +23,13 @@ typedef struct
 
 extern pid_t servo1;
 extern pid_t servo2;
-
+extern float servo1_P,servo1_I,servo1_D,servo2_P,servo2_I,servo2_D;
 void pid_cal(pid_t *pid);
 
 void pid_init(pid_t *pid, uint32_t mode, float p, float i, float d);
 
+void PID_servo1();
 
+void PID_servo2();
 
 #endif
