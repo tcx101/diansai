@@ -7,7 +7,7 @@ diansai\key.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
 diansai\key.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 diansai\key.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h
 diansai\key.o: ../Drivers/CMSIS/Include/core_cm4.h
-diansai\key.o: D:\kell5\core\ARM\ARMCC\Bin\..\include\stdint.h
+diansai\key.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 diansai\key.o: ../Drivers/CMSIS/Include/cmsis_version.h
 diansai\key.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 diansai\key.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
@@ -15,7 +15,7 @@ diansai\key.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 diansai\key.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 diansai\key.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 diansai\key.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-diansai\key.o: D:\kell5\core\ARM\ARMCC\Bin\..\include\stddef.h
+diansai\key.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 diansai\key.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
 diansai\key.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
 diansai\key.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h
@@ -36,9 +36,9 @@ diansai\key.o: ../Core/Inc/dma.h
 diansai\key.o: ../Core/Inc/tim.h
 diansai\key.o: ../Core/Inc/usart.h
 diansai\key.o: ../Core/Inc/gpio.h
-diansai\key.o: D:\kell5\core\ARM\ARMCC\Bin\..\include\string.h
-diansai\key.o: D:\kell5\core\ARM\ARMCC\Bin\..\include\stdio.h
-diansai\key.o: D:\kell5\core\ARM\ARMCC\Bin\..\include\stdlib.h
+diansai\key.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+diansai\key.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+diansai\key.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 diansai\key.o: ..\icore\KEY.h
 diansai\key.o: ..\icore\headfile.h
 diansai\key.o: ..\icore\servo.h

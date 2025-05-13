@@ -110,7 +110,7 @@ int main(void)
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
 	All_init();
-	flash_set_buffer_PID(1) ;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */

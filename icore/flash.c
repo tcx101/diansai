@@ -171,51 +171,72 @@ void flash_get_buffer_PARA()
 }
 
 /**
-  * @brief 将参数写入Flash扇区
-  * @param sector_num : 目标扇区编号（STM32F407的扇区5起始地址为0x08020000）
-  * @param page_offset : 页偏移量（0-127，每个页为1KB）
+  * @brief 将PID参数写入Flash
+  * @param pid_params : PID参数数组指针
+  * @param param_count : 参数数量（不能超过PID_PARAM_COUNT）
+  * @retval None
   */
-void flash_set_buffer_PID(uint16_t page_offset) 
+void flash_set_buffer_PID(float *pid_params, uint16_t param_count) 
 {
-    // 1. 解锁Flash
-    if(HAL_FLASH_Unlock() != HAL_OK) {
-        Error_Handler(); // 自定义错误处理函数[3,9](@ref)
+    // 参数检查
+    if (pid_params == NULL || param_count > PID_PARAM_COUNT) {
+        return; // 参数错误，直接返回
     }
 
-    // 2. 填充数据到缓冲区
-    memset(flash_union_buffer, 0xFF, sizeof(flash_union_buffer));
-		
-    flash_union_buffer[0].float_type = 66;
-//    flash_union_buffer[1].float_val = motor_L.i;
-    // ...其他参数填充（与原函数一致）
+    // 1. 清除缓冲区
+    flash_buffer_clear();
 
-    // 3. 计算目标地址（扇区5起始地址0x08020000）
-    uint32_t target_addr = 0x08020000 + (page_offset * 1024); 
-
-    // 4. 擦除操作（必须按扇区擦除）
-    FLASH_EraseInitTypeDef erase_config = {
-        .TypeErase   = FLASH_TYPEERASE_SECTORS,
-        .Sector      = 0x08020000,
-        .NbSectors   = 1,
-        .VoltageRange= FLASH_VOLTAGE_RANGE_3
-    };
-    uint32_t sector_error;
-    
-    if(HAL_FLASHEx_Erase(&erase_config, &sector_error) != HAL_OK) {
-        Error_Handler(); // 擦除失败处理[3,9](@ref)
+    // 2. 将PID参数存入缓冲区
+    for (uint16_t i = 0; i < param_count; i++) {
+        flash_union_buffer[i].float_type = pid_params[i];
     }
 
-    // 5. 按32位字写入（强制对齐）
-    for(int i=0; i<FLASH_BUFFER_SIZE; i++) {
-        if(HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, 
-                           target_addr + (i*4),
-                           flash_union_buffer[i].uint32_type) != HAL_OK) {
-            Error_Handler(); // 写入失败处理[3,9](@ref)
-        }
+    // 3. 擦除Flash扇区
+    stm32_flash_erase_page(PID_FLASH_SECTOR);
+
+    // 4. 写入Flash
+    uint32_t pid_page = 0; // 在PID扇区内的页偏移
+    uint32_t address = 0x080E0000 + (PID_FLASH_SECTOR * FLASH_PAGE_SIZE) + (pid_page * EEPROM_PAGE_LENGTH);
+
+    // 获取双字指针（64位对齐）
+    uint64_t *buffer = (uint64_t *)flash_union_buffer;
+    uint32_t words_to_write = EEPROM_PAGE_LENGTH / 8; // 计算双字数
+
+    // 解锁Flash
+    HAL_FLASH_Unlock();
+
+    // 按双字写入数据
+    for (uint32_t i = 0; i < words_to_write; i++) {
+        HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, 
+                         address + (i * 8), 
+                         buffer[i]);
     }
 
-    // 6. 重新上锁
+    // 重新加锁Flash
     HAL_FLASH_Lock();
+}
+
+/**
+  * @brief 从Flash读取PID参数
+  * @param pid_params : 用于存储读取参数的数组指针
+  * @param param_count : 要读取的参数数量（不能超过PID_PARAM_COUNT）
+  * @retval None
+  */
+void flash_get_buffer_PID(float *pid_params, uint16_t param_count) 
+{
+    // 参数检查
+    if (pid_params == NULL || param_count > PID_PARAM_COUNT) {
+        return; // 参数错误，直接返回
+    }
+
+    // 读取Flash页到缓冲区
+    uint32_t pid_page = 0; // 在PID扇区内的页偏移
+    flash_read_page_to_buffer(PID_FLASH_SECTOR, pid_page);
+
+    // 从缓冲区获取PID参数
+    for (uint16_t i = 0; i < param_count; i++) {
+        pid_params[i] = flash_union_buffer[i].float_type;
+    }
 }
 
 

@@ -1,4 +1,5 @@
 #include "pid.h"
+#include <math.h>
 pid_t servo1;
 pid_t servo2;
 
@@ -59,3 +60,27 @@ void PID_servo2()
   pid_cal(&servo2);
 	set_servo(servo2_hadle,servo2.out);
 }
+//对pid参数进行flash写入
+void saveThePidParameter (void) {
+float pid_params[6] = {servo1.p, servo1.i, servo1.d, servo2.p, servo2.i, servo2.d};
+flash_set_buffer_PID(pid_params, 6);
+}
+//加载pid参数
+void getThePidParameter (void) {
+	float pid_params[6];
+ 	flash_get_buffer_PID(pid_params, 6);
+  if (isnan(pid_params[0]) || pid_params[0] < 0.01f) {
+        // Flash中无有效数据，使用默认值
+        return;
+    }
+	servo1.p = pid_params[0];
+	servo1.i = pid_params[1];
+	servo1.d = pid_params[2];
+	servo2.p = pid_params[3];
+	servo2.i = pid_params[4];
+	servo2.d = pid_params[5];
+pid_init(&servo1,POSITION_PID,servo1_P,servo1_I,servo1_D);
+pid_init(&servo2,POSITION_PID,servo2_P,servo2_I,servo2_D);
+}
+    
+

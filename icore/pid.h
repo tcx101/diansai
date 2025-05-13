@@ -31,5 +31,6 @@ void pid_init(pid_t *pid, uint32_t mode, float p, float i, float d);
 void PID_servo1();
 
 void PID_servo2();
-
+void saveThePidParameter (void);
+void getThePidParameter (void);
 #endif
