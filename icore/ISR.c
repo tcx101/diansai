@@ -5,9 +5,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	/*20ms÷–∂œ*/
 	if(htim->Instance==TIM6)
 	{
-		PID_servo1();
+		if(point_data.light[0]!=0 &&point_data.light[1]!=0)
+		{PID_servo1();
 		
-		PID_servo2();
+		PID_servo2();}
 	}
 	
 	/*10ms÷–∂œ*/

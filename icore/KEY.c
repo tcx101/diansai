@@ -83,8 +83,9 @@ void key_function()
 	{	static char str[20];
 		sprintf(str,"aa");
 		HAL_UART_Transmit_DMA(&huart2,(uint8_t *)str,strlen(str));
+		//control_mid();
 		key[0].key_flag=0;
-		
+		HAL_TIM_Base_Start_IT(&htim6);
 	}
 	
 	else if(key[0].key_longflag==1)
@@ -97,45 +98,67 @@ void key_function()
 	 else if(key[1].key_flag==1)
 	{	
 		key[1].key_flag=0;
+		AB_flag=1;
+		X_target=cal_mid(point_data.A1[0],point_data.A2[0]);
+		Y_target=AB_line[X_target];
+		//control_A_B();
 		mode++;
-		if(mode>4)
+		if(mode>6)
 		{mode=1;}
 	}
 	
 		else if(key[2].key_flag==1)
 	{	
+		
 		key[2].key_flag=0;
+		control_mid();
+		AB_flag=0;
 		if(mode==1)
-		{servo1_P+=1;}
+		{servo1_P+=0.1;}
 		
 		else if(mode==2)
-		{servo1_D+=1;}
+		{servo1_I+=0.01;}
 		
 		else if(mode==3)
-		{servo2_P+=1;}
+		{servo1_D+=0.1;}	
 		
 		else if(mode==4)
-		{servo2_D+=1;}	
-	 pid_init(&servo1,POSITION_PID,servo1_P,0,servo1_D);	
-	 pid_init(&servo2,POSITION_PID,servo2_P,0,servo2_D);		
+		{servo2_P+=0.1;}
+		
+		else if(mode==5)
+		{servo2_I+=0.01;}	
+		
+		else if(mode==6)
+		{servo2_D+=0.1;}	
+		
+	  pid_init(&servo1,POSITION_PID,servo1_P,servo1_I,servo1_D);	
+	  pid_init(&servo2,POSITION_PID,servo2_P,servo2_I,servo2_D);		
 	}
 	
 	else if(key[3].key_flag==1)
 	{	
 		key[3].key_flag=0;
+		//control_A();
+		AB_flag=0;
 		if(mode==1)
-		{servo1_P-=1;}
+		{servo1_P-=0.1;}
 		
 		else if(mode==2)
-		{servo1_D-=1;}	
+		{servo1_I-=0.01;}
 		
 		else if(mode==3)
-		{servo2_P-=1;}
+		{servo1_D-=0.1;}	
 		
 		else if(mode==4)
-		{servo2_D-=1;}	
-	 pid_init(&servo1,POSITION_PID,servo1_P,0,servo1_D);	
-	 pid_init(&servo2,POSITION_PID,servo2_P,0,servo2_D);
+		{servo2_P-=0.1;}
+		
+		else if(mode==5)
+		{servo2_I-=0.01;}	
+		
+		else if(mode==6)
+		{servo2_D-=0.1;}
+	 pid_init(&servo1,POSITION_PID,servo1_P,servo1_I,servo1_D);	
+	 pid_init(&servo2,POSITION_PID,servo2_P,servo2_I,servo2_D);
 		
 	}	
 }
@@ -161,30 +184,39 @@ void key_function()
 	 else if(key[1].key_flag==1)
 	{	
 		key[1].key_flag=0;
-		mode++;
-		if(mode>=2)
-		{mode=1;}
+		
+		AB_flag=1;
+		X_target=cal_mid(point_data.A1[0],point_data.A2[0]);
+		Y_target=AB_line[X_target];
+		
+//		mode++;
+//		if(mode>=2)
+//		{mode=1;}
 	}
 	
 		else if(key[2].key_flag==1)
 	{	
 		key[2].key_flag=0;
-		if(mode==1)
-		{servo2_P+=1;}
-		
-		else if(mode==2)
-		{servo2_D+=1;}
+		control_mid();
+		AB_flag=0;
+//		if(mode==1)
+//		{servo2_P+=1;}
+//		
+//		else if(mode==2)
+//		{servo2_D+=1;}
 		
 	}
 	
 	else if(key[3].key_flag==1)
 	{	
 		key[3].key_flag=0;
-		if(mode==1)
-		{servo2_P-=1;}
-		
-		else if(mode==2)
-		{servo2_D-=1;}	
+		control_A();
+		AB_flag=0;
+//		if(mode==1)
+//		{servo2_P-=1;}
+//		
+//		else if(mode==2)
+//		{servo2_D-=1;}	
 	}
 	}
 	

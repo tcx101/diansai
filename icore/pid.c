@@ -45,17 +45,17 @@ void pid_cal(pid_t *pid)//需要pid的target和now，输出一个PID后的值
 
 void PID_servo1()
 {
-	servo1.target=point_data.mid[0];
+	servo1.target=X_target;
 	servo1.now=point_data.light[0];
   pid_cal(&servo1);
-	set_servo(servo1_hadle,servo1.out);
+	set_servo(servo1_hadle,servo1_mid-servo1.out);
 
 }
 
 void PID_servo2()
 {
-	servo2.target=point_data.mid[1];
+	servo2.target=Y_target;
 	servo2.now=point_data.light[1];
   pid_cal(&servo2);
-	set_servo(servo2_hadle,servo2.out);
+	set_servo(servo2_hadle,servo2_mid-servo2.out);
 }

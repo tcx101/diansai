@@ -80,17 +80,24 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
                 char *p = data_start;
                 
                 // 解析外圈四个顶点 (A1, B1, C1, D1)
-                point_data.A1[0] = safe_parse_int(&p); point_data.A1[1] = safe_parse_int(&p);
-                point_data.B1[0] = safe_parse_int(&p); point_data.B1[1] = safe_parse_int(&p);
-                point_data.C1[0] = safe_parse_int(&p); point_data.C1[1] = safe_parse_int(&p);
-                point_data.D1[0] = safe_parse_int(&p); point_data.D1[1] = safe_parse_int(&p);
+               // point_data.A1[0] = safe_parse_int(&p); point_data.A1[1] = safe_parse_int(&p);
+							  point_data.C1[0] = safe_parse_int(&p); point_data.C1[1] = safe_parse_int(&p);
+                //point_data.B1[0] = safe_parse_int(&p); point_data.B1[1] = safe_parse_int(&p);
+						  	point_data.B1[0] = safe_parse_int(&p); point_data.B1[1] = safe_parse_int(&p);
+                ///point_data.C1[0] = safe_parse_int(&p); point_data.C1[1] = safe_parse_int(&p);
+							  point_data.A1[0] = safe_parse_int(&p); point_data.A1[1] = safe_parse_int(&p);
+                //point_data.D1[0] = safe_parse_int(&p); point_data.D1[1] = safe_parse_int(&p);
+							  point_data.D1[0] = safe_parse_int(&p); point_data.D1[1] = safe_parse_int(&p);
                 
                 // 解析内圈四个顶点 (A2, B2, C2, D2)
+                //point_data.A2[0] = safe_parse_int(&p); point_data.A2[1] = safe_parse_int(&p);
+							  point_data.D2[0] = safe_parse_int(&p); point_data.D2[1] = safe_parse_int(&p);
+                //point_data.B2[0] = safe_parse_int(&p); point_data.B2[1] = safe_parse_int(&p);
+						  	point_data.C2[0] = safe_parse_int(&p); point_data.C2[1] = safe_parse_int(&p);
+                //point_data.C2[0] = safe_parse_int(&p); point_data.C2[1] = safe_parse_int(&p);
+						  	point_data.B2[0] = safe_parse_int(&p); point_data.B2[1] = safe_parse_int(&p);
+                //point_data.D2[0] = safe_parse_int(&p); point_data.D2[1] = safe_parse_int(&p);
                 point_data.A2[0] = safe_parse_int(&p); point_data.A2[1] = safe_parse_int(&p);
-                point_data.B2[0] = safe_parse_int(&p); point_data.B2[1] = safe_parse_int(&p);
-                point_data.C2[0] = safe_parse_int(&p); point_data.C2[1] = safe_parse_int(&p);
-                point_data.D2[0] = safe_parse_int(&p); point_data.D2[1] = safe_parse_int(&p);
-                
                 // 解析内部矩形中心点 (mid)
                 point_data.mid[0] = safe_parse_int(&p);
                 point_data.mid[1] = safe_parse_int(&p);
@@ -98,7 +105,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
                 // 清除之前的激光点数据，因为此包仅含矩形数据
                 point_data.light[0] = 0;
                 point_data.light[1] = 0;
-                
+                control_mid();
                 last_receive_mode = RECEIVE_MODE_RECTANGLE;
                 
                 // 可选: 发送接收确认

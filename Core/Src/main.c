@@ -110,7 +110,7 @@ int main(void)
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
 	All_init();
-	flash_set_buffer_PID(1) ;
+	//flash_set_buffer_PID(1) ;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -119,26 +119,31 @@ int main(void)
   {
 
 	 /*AB*/
-	 Fill_YLine(cal_mid(point_data.A1[0],point_data.A2[0]), cal_mid(point_data.A1[1],point_data.A2[1]),cal_mid( point_data.B1[0],point_data.B2[0]), cal_mid(point_data.B1[1],point_data.B2[1]), AB_line);
+	 Fill_XLine(cal_mid(point_data.A1[0],point_data.A2[0]), cal_mid(point_data.A1[1],point_data.A2[1]),cal_mid( point_data.B1[0],point_data.B2[0]), cal_mid(point_data.B1[1],point_data.B2[1]), AB_line);
    /*BC*/
-   Fill_XLine(cal_mid(point_data.B1[0],point_data.B2[0]), cal_mid(point_data.B1[1],point_data.B2[1]),cal_mid(point_data.C1[0],point_data.C2[0]), cal_mid(point_data.C1[1],point_data.C2[1]), BC_line);
+   Fill_YLine(cal_mid(point_data.B1[0],point_data.B2[0]), cal_mid(point_data.B1[1],point_data.B2[1]),cal_mid(point_data.C1[0],point_data.C2[0]), cal_mid(point_data.C1[1],point_data.C2[1]), BC_line);
   /*CD*/
-  Fill_YLine(cal_mid(point_data.C1[0],point_data.C2[0]), cal_mid(point_data.C1[1],point_data.C2[1]),cal_mid(point_data.D1[0],point_data.D2[0]), cal_mid(point_data.D1[1],point_data.D2[1]), CD_line);
-  /*AD*/
-  Fill_XLine(cal_mid(point_data.A1[0],point_data.A2[0]), cal_mid(point_data.A1[1],point_data.A2[1]), cal_mid(point_data.D1[0],point_data.D2[0]), cal_mid(point_data.D1[1],point_data.D2[1]), AD_line);
-
-  //LCD_ShowIntNum(0,0,point_data.light[0],3,BLACK,WHITE,16);//��ʾ��������
-  //LCD_ShowIntNum(0,20,point_data.light[1],3,BLACK,WHITE,16);//��ʾ��������
-
- //LCD_ShowIntNum(50,0,point_data.A1[0],3,BLACK,WHITE,16);//��ʾ��������
-  //LCD_ShowIntNum(50,20,point_data.A1[1],3,BLACK,WHITE,16);//��ʾ��������
-
- // LCD_ShowIntNum(100,0,point_data.mid[0],3,BLACK,WHITE,16);//��ʾ��������
-  //LCD_ShowIntNum(100,20,point_data.mid[1],3,BLACK,WHITE,16);//��ʾ��������
 		
-  //LCD_ShowIntNum(X_1,Y_1,12,2,BLACK,WHITE,16);//��ʾ��������
-  //LCD_ShowIntNum(X_3,Y_1,3,1,BLACK,WHITE,16);//��ʾ��������
-  //LCD_ShowIntNum(X_1,Y_2,123,3,BLACK,WHITE,16);//��ʾ��������
+  
+		//Fill_XLine(cal_mid(point_data.C1[0],point_data.C2[0]), cal_mid(point_data.C1[1],point_data.C2[1]),cal_mid(point_data.D1[0],point_data.D2[0]), cal_mid(point_data.D1[1],point_data.D2[1]), CD_line);
+	/*DC*/
+	 Fill_XLine(cal_mid(point_data.D1[0],point_data.D2[0]), cal_mid(point_data.D1[1],point_data.D2[1]),cal_mid(point_data.C1[0],point_data.C2[0]), cal_mid(point_data.C1[1],point_data.C2[1]), CD_line);
+	
+  /*AD*/
+   Fill_YLine(cal_mid(point_data.A1[0],point_data.A2[0]), cal_mid(point_data.A1[1],point_data.A2[1]), cal_mid(point_data.D1[0],point_data.D2[0]), cal_mid(point_data.D1[1],point_data.D2[1]), AD_line);
+
+  //LCD_ShowIntNum(0,0,point_data.light[0],3,BLACK,WHITE,16);
+  //LCD_ShowIntNum(0,20,point_data.light[1],3,BLACK,WHITE,16);
+
+ //LCD_ShowIntNum(50,0,point_data.A1[0],3,BLACK,WHITE,16);
+  //LCD_ShowIntNum(50,20,point_data.A1[1],3,BLACK,WHITE,16);
+
+ // LCD_ShowIntNum(100,0,point_data.mid[0],3,BLACK,WHITE,16);
+  //LCD_ShowIntNum(100,20,point_data.mid[1],3,BLACK,WHITE,16);
+		
+  //LCD_ShowIntNum(X_1,Y_1,12,2,BLACK,WHITE,16);
+  //LCD_ShowIntNum(X_3,Y_1,3,1,BLACK,WHITE,16);
+  //LCD_ShowIntNum(X_1,Y_2,123,3,BLACK,WHITE,16);
    LCD_show();
 	 key_function();  
 		

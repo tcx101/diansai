@@ -1,5 +1,4 @@
 #include  "servo.h"
-
 void set_servo(TIM_HandleTypeDef handle,uint16_t compare)
 {
 	if(compare<=800)
@@ -10,11 +9,11 @@ void set_servo(TIM_HandleTypeDef handle,uint16_t compare)
   	__HAL_TIM_SetCompare(&handle,TIM_CHANNEL_1,compare);
 }
 
-void servo_init(TIM_HandleTypeDef handle)
+void servo_init(TIM_HandleTypeDef handle,uint16_t PWM_Value)
 {
 	HAL_TIM_PWM_Start(&handle,TIM_CHANNEL_1);
 	
-	__HAL_TIM_SetCompare(&handle,TIM_CHANNEL_1,mid_value);
+	__HAL_TIM_SetCompare(&handle,TIM_CHANNEL_1,PWM_Value);
 	
 	
 }

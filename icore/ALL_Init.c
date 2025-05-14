@@ -11,18 +11,18 @@ void All_init()
 	
 	LCD_Fill(0, 0, 128, 160, WHITE);
 
-	pid_init(&servo1,POSITION_PID,10,0,0);
+	pid_init(&servo1,POSITION_PID,1,0.1,0.5);
 	
-	pid_init(&servo2,POSITION_PID,10,0,0);
+	pid_init(&servo2,POSITION_PID,0.8,0.1,0.4);
 
-	servo_init(servo1_hadle);
+	servo_init(servo1_hadle,servo1_mid);
 	
-	servo_init(servo2_hadle);
+	servo_init(servo2_hadle,servo2_mid);
 	
 	chuankou_init();
 	
 	/*20ms中断*/
-	HAL_TIM_Base_Start_IT(&htim6);
+	//HAL_TIM_Base_Start_IT(&htim6);
 	
 }
 
