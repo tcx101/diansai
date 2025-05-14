@@ -3,17 +3,17 @@
         {
             "name": "diansai",
             "includePath": [
-                "d:\\diansai\\Core\\Inc",
-                "d:\\diansai\\Drivers\\STM32F4xx_HAL_Driver\\Inc",
-                "d:\\diansai\\Drivers\\STM32F4xx_HAL_Driver\\Inc\\Legacy",
-                "d:\\diansai\\Drivers\\CMSIS\\Device\\ST\\STM32F4xx\\Include",
-                "d:\\diansai\\Drivers\\CMSIS\\Include",
-                "d:\\diansai\\icore",
-                "C:\\Keil_v5\\ARM\\ARMCC\\include",
-                "C:\\Keil_v5\\ARM\\ARMCC\\include\\rw",
-                "d:\\diansai\\MDK-ARM",
-                "d:\\diansai\\Core\\Src",
-                "d:\\diansai\\Drivers\\STM32F4xx_HAL_Driver\\Src"
+                "c:\\Users\\90815\\Desktop\\Diansai\\diansai-1\\Core\\Inc",
+                "c:\\Users\\90815\\Desktop\\Diansai\\diansai-1\\Drivers\\STM32F4xx_HAL_Driver\\Inc",
+                "c:\\Users\\90815\\Desktop\\Diansai\\diansai-1\\Drivers\\STM32F4xx_HAL_Driver\\Inc\\Legacy",
+                "c:\\Users\\90815\\Desktop\\Diansai\\diansai-1\\Drivers\\CMSIS\\Device\\ST\\STM32F4xx\\Include",
+                "c:\\Users\\90815\\Desktop\\Diansai\\diansai-1\\Drivers\\CMSIS\\Include",
+                "c:\\Users\\90815\\Desktop\\Diansai\\diansai-1\\icore",
+                "D:\\kell5\\core\\ARM\\ARMCC\\include",
+                "D:\\kell5\\core\\ARM\\ARMCC\\include\\rw",
+                "c:\\Users\\90815\\Desktop\\Diansai\\diansai-1\\MDK-ARM",
+                "c:\\Users\\90815\\Desktop\\Diansai\\diansai-1\\Core\\Src",
+                "c:\\Users\\90815\\Desktop\\Diansai\\diansai-1\\Drivers\\STM32F4xx_HAL_Driver\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

@@ -144,17 +144,7 @@ void getThePidParameter(void) {
   * @note 在系统启动时调用此函数，确保PID参数正确初始化
   */
 void init_pid_parameters(void) {
-    // 设置默认PID参数值
-    servo1_P = 1.0f;   // 根据实际调试修改默认值
-    servo1_I = 0.1f;
-    servo1_D = 0.05f;
-    servo2_P = 1.0f;
-    servo2_I = 0.1f;
-    servo2_D = 0.05f;
-    
-    // 使用默认值初始化PID控制器
-    pid_init(&servo1, POSITION_PID, servo1_P, servo1_I, servo1_D);
-    pid_init(&servo2, POSITION_PID, servo2_P, servo2_I, servo2_D);
+
     
     // 尝试从Flash加载之前保存的PID参数
     float pid_params[PID_TOTAL_PARAMS];

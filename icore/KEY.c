@@ -134,10 +134,6 @@ void key_function()
 	  pid_init(&servo1,POSITION_PID,servo1_P,servo1_I,servo1_D);	
 	  pid_init(&servo2,POSITION_PID,servo2_P,servo2_I,servo2_D);	
       
-      // 打印当前PID参数（调试用）
-      sprintf(debug_str, "PID(+): %.2f,%.2f,%.2f,%.2f\r\n", 
-              servo1_P, servo1_I, servo1_D, servo2_P);
-      HAL_UART_Transmit(&huart1, (uint8_t *)debug_str, strlen(debug_str), 100);
       
       // 更新舵机PID参数后保存到Flash
       saveThePidParameter();	
