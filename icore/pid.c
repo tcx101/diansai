@@ -144,26 +144,25 @@ void getThePidParameter(void) {
   * @note 在系统启动时调用此函数，确保PID参数正确初始化
   */
 void init_pid_parameters(void) {
-
+    // 首先设置默认值
+    servo1_P = 1.0f;   // 根据实际调试修改默认值
+    servo1_I = 0.1f;
+    servo1_D = 0.05f;
+    servo2_P = 1.0f;
+    servo2_I = 0.1f;
+    servo2_D = 0.05f;
+    
+    // 使用默认值初始化PID控制器
+    pid_init(&servo1, POSITION_PID, servo1_P, servo1_I, servo1_D);
+    pid_init(&servo2, POSITION_PID, servo2_P, servo2_I, servo2_D);
     
     // 尝试从Flash加载之前保存的PID参数
     float pid_params[PID_TOTAL_PARAMS];
-    HAL_StatusTypeDef status;
     
-    status = flash_get_buffer_PID(pid_params, PID_TOTAL_PARAMS);
-    
-    // 检查是否成功读取到有效参数
-    if (status == HAL_OK) {
-        // 验证所有参数
-        uint8_t all_valid = 1; // 假设所有参数有效
-        for (uint8_t i = 0; i < PID_TOTAL_PARAMS; i++) {
-            if (!is_valid_param(pid_params[i])) {
-                all_valid = 0;
-                break;
-            }
-        }
-        
-        if (all_valid) {
+    // 只有在读取成功且参数合理时才使用Flash中的参数
+    if (flash_get_buffer_PID(pid_params, PID_TOTAL_PARAMS) == HAL_OK) {
+        // 简单验证第一个参数是否在合理范围内
+        if (pid_params[0] > 0.001f && pid_params[0] < 100.0f) {
             // 更新全局变量
             servo1_P = pid_params[0];
             servo1_I = pid_params[1];
@@ -175,13 +174,7 @@ void init_pid_parameters(void) {
             // 重新初始化PID控制器
             pid_init(&servo1, POSITION_PID, servo1_P, servo1_I, servo1_D);
             pid_init(&servo2, POSITION_PID, servo2_P, servo2_I, servo2_D);
-        } else {
-            // 有参数无效，使用默认值并保存
-            saveThePidParameter();
         }
-    } else {
-        // Flash读取失败或无数据，使用默认值并保存到Flash
-        saveThePidParameter();
     }
 }
     

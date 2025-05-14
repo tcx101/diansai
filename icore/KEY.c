@@ -109,7 +109,6 @@ void key_function()
 	
 		else if(key[2].key_flag==1)
 	{	
-		char debug_str[50];
 		key[2].key_flag=0;
 		control_mid();
 		AB_flag=0;
@@ -131,12 +130,14 @@ void key_function()
 		else if(mode==6)
 		{servo2_D+=0.1;}	
 		
+	  // 更新PID控制器参数
 	  pid_init(&servo1,POSITION_PID,servo1_P,servo1_I,servo1_D);	
 	  pid_init(&servo2,POSITION_PID,servo2_P,servo2_I,servo2_D);	
       
-      
-      // 更新舵机PID参数后保存到Flash
-      saveThePidParameter();	
+      // 更新舵机PID参数后保存到Flash - 确保不是在中断中调用
+      if (!HAL_NVIC_GetActive(TIM7_IRQn)) {
+          saveThePidParameter();
+      }
 	}
 	
 	else if(key[3].key_flag==1)
@@ -161,11 +162,14 @@ void key_function()
 		
 		else if(mode==6)
 		{servo2_D-=0.1;}
+	 // 更新PID控制器参数
 	 pid_init(&servo1,POSITION_PID,servo1_P,servo1_I,servo1_D);	
 	 pid_init(&servo2,POSITION_PID,servo2_P,servo2_I,servo2_D);
      
-     // 更新舵机PID参数后保存到Flash
-     saveThePidParameter();
+     // 更新舵机PID参数后保存到Flash - 确保不是在中断中调用
+     if (!HAL_NVIC_GetActive(TIM7_IRQn)) {
+         saveThePidParameter();
+     }
 		
 	}	
 }
