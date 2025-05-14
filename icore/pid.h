@@ -36,7 +36,7 @@ void pid_init(pid_t *pid, uint32_t mode, float p, float i, float d);
 void PID_servo1();
 
 void PID_servo2();
-void saveThePidParameter(void);
+HAL_StatusTypeDef saveThePidParameter(void);
 void getThePidParameter(void);
 uint8_t is_valid_param(float value);
 void init_pid_parameters(void);

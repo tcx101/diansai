@@ -167,31 +167,48 @@ HAL_StatusTypeDef flash_set_buffer_PID(float *pid_params, uint16_t param_count) 
         flash_union_buffer[i].float_type = pid_params[i];
     }
 
-    // 3. 擦除Flash扇区
-    stm32_flash_erase_page(PID_FLASH_SECTOR);
+    // 3. 准备擦除操作参数
+    FLASH_EraseInitTypeDef eraseInit;
+    uint32_t sectorError = 0;
     
-    // 4. 使用最简单的扇区地址计算
-    uint32_t address = FLASH_SECTOR_11_ADDR;
+    eraseInit.TypeErase = FLASH_TYPEERASE_SECTORS;
+    eraseInit.Sector = PID_FLASH_SECTOR; // 使用扇区11
+    eraseInit.NbSectors = 1;
+    eraseInit.VoltageRange = FLASH_VOLTAGE_RANGE_3;
     
-    // 获取双字指针（64位对齐）
-    uint64_t *buffer = (uint64_t *)flash_union_buffer;
-    uint32_t words_to_write = (param_count * sizeof(float) + 7) / 8; // 向上取整到8字节
+    // 4. 使用STM32 HAL库的正确方式执行Flash操作
+    HAL_StatusTypeDef status;
     
-    // 解锁Flash
-    HAL_FLASH_Unlock();
+    // 4.1 解锁Flash
+    status = HAL_FLASH_Unlock();
+    if (status != HAL_OK) {
+        return status;
+    }
     
-    // 按双字写入数据
-    for (uint32_t i = 0; i < words_to_write; i++) {
-        if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, 
-                        address + (i * 8), 
-                        buffer[i]) != HAL_OK) {
+    // 4.2 擦除扇区
+    status = HAL_FLASHEx_Erase(&eraseInit, &sectorError);
+    if (status != HAL_OK) {
+        HAL_FLASH_Lock();
+        return status;
+    }
+    
+    // 4.3 计算地址 - 使用Sector 11的起始地址
+    uint32_t address = 0x080E0000; // Sector 11的固定起始地址
+    
+    // 4.4 写入数据 - 按字(32位)写入，更可靠
+    for (uint16_t i = 0; i < param_count; i++) {
+        status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, 
+                                   address + (i * 4), 
+                                   flash_union_buffer[i].uint32_type);
+        if (status != HAL_OK) {
             HAL_FLASH_Lock();
-            return HAL_ERROR;
+            return status;
         }
     }
     
-    // 重新加锁Flash
+    // 4.5 锁定Flash
     HAL_FLASH_Lock();
+    
     return HAL_OK;
 }
 
@@ -207,11 +224,22 @@ HAL_StatusTypeDef flash_get_buffer_PID(float *pid_params, uint16_t param_count) 
         return HAL_ERROR; // 参数错误
     }
 
-    // 使用与写入相同的地址
-    uint32_t flash_addr = FLASH_SECTOR_11_ADDR;
+    // 使用Sector 11的固定起始地址
+    uint32_t address = 0x080E0000;
     
-    // 直接从Flash读取数据
-    memcpy(pid_params, (void*)flash_addr, param_count * sizeof(float));
+    // 检查扇区是否为空（全F）
+    uint32_t first_word = *((uint32_t*)address);
+    if (first_word == 0xFFFFFFFF) {
+        // 扇区为空，未写入数据
+        return HAL_ERROR;
+    }
+    
+    // 直接按字(32位)读取数据
+    for (uint16_t i = 0; i < param_count; i++) {
+        uint32_t word = *((uint32_t*)(address + (i * 4)));
+        flash_union_buffer[i].uint32_type = word;
+        pid_params[i] = flash_union_buffer[i].float_type;
+    }
     
     return HAL_OK;
 }
