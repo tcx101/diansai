@@ -4,8 +4,8 @@
 
 enum
 {
-  POSITION_PID,  // Î»ÖÃÊ½
-  DELTA_PID,         // ÔöÁ¿Ê½
+  POSITION_PID,  // ä½ç½®å¼
+  DELTA_PID,         // å¢é‡å¼
 };
 
 typedef struct
@@ -31,5 +31,8 @@ void pid_init(pid_t *pid, uint32_t mode, float p, float i, float d);
 void PID_servo1();
 
 void PID_servo2();
-
+void saveThePidParameter(void);
+void getThePidParameter(void);
+uint8_t is_valid_param(float value);
+void init_pid_parameters(void);
 #endif

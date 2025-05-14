@@ -831,10 +831,10 @@ ARM Macro Assembler    Page 13
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
 interwork --depend=diansai\startup_stm32f407xx.d -odiansai\startup_stm32f407xx.
-o -I.\RTE\_diansai -ID:\kell5\pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include --predefi
-ne="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 537" --predefine="_R
-TE_ SETA 1" --predefine="STM32F407xx SETA 1" --predefine="_RTE_ SETA 1" --list=
-startup_stm32f407xx.lst startup_stm32f407xx.s
+o -I.\RTE\_diansai -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include --p
+redefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 538" --predefi
+ne="_RTE_ SETA 1" --predefine="STM32F407xx SETA 1" --predefine="_RTE_ SETA 1" -
+-list=startup_stm32f407xx.lst startup_stm32f407xx.s
 
 
 

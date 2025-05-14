@@ -110,7 +110,11 @@ int main(void)
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
 	All_init();
+<<<<<<< HEAD
 	//flash_set_buffer_PID(1) ;
+=======
+
+>>>>>>> 04fc011eb2db7265daeae95812488f8de14f1d80
   /* USER CODE END 2 */
 
   /* Infinite loop */

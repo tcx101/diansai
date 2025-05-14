@@ -2,25 +2,47 @@
 #define __flash_H
 #include "headfile.h"
 
-typedef union                                                                   // ¹Ì¶¨µÄÊı¾İ»º³åµ¥Ôª¸ñÊ½
+typedef union                                                                   // å›ºå®šæ•°æ®å­˜å‚¨ç¼“å•å…ƒæ ¼å¼
 {
     float   float_type; 
-                                              // float  ÀàĞÍ
-    uint32_t  uint32_type;                    // uint32 ÀàĞÍ
-    int32_t   int32_type;                     // int32  ÀàĞÍ
-    uint16_t  uint16_type;                    // uint16 ÀàĞÍ
-    int16_t   int16_type;                     // int16  ÀàĞÍ
-    uint8_t   uint8_type;                     // uint8  ÀàĞÍ
-    int8_t    int8_type;                     // int8   ÀàĞÍ
+                                              // float  ç±»å‹
+    uint32_t  uint32_type;                    // uint32 ç±»å‹
+    int32_t   int32_type;                     // int32  ç±»å‹
+    uint16_t  uint16_type;                    // uint16 ç±»å‹
+    int16_t   int16_type;                     // int16  ç±»å‹
+    uint8_t   uint8_type;                     // uint8  ç±»å‹
+    int8_t    int8_type;                     // int8   ç±»å‹
 }flash_data_union;
 
-#define EEPROM_PAGE_LENGTH           (1024)  
-#define FLASH_PAGE_SIZE    1024    // ¼ÙÉèÒ³´óĞ¡Îª 1 KB
-#define FLASH_PAGE_NUM_MAX 11      // ×î´óÒ³ºÅ
-#define FLASH_SECTOR       11      // ¼ÙÉèËùÓĞÒ³Î»ÓÚ Sector 11
+// STM32F407VGT6 Flashé…ç½®
+#define EEPROM_PAGE_LENGTH           (1024)   // é¡µæ•°æ®é•¿åº¦
+#define FLASH_PAGE_SIZE              (1024)   // å®šä¹‰é¡µå¤§å°ä¸º 1 KB
+#define FLASH_PAGE_NUM_MAX           (12)     // æœ€å¤§é¡µæ•°ï¼ˆSTM32F407æœ‰12ä¸ªæ‰‡åŒºï¼‰
+
+// Flashæ‰‡åŒºåœ°å€å®šä¹‰ï¼ˆSTM32F407VGT6ï¼‰
+#define FLASH_BASE_ADDRESS           (0x08000000)  // Flashèµ·å§‹åœ°å€
+#define FLASH_SECTOR_10_ADDR         (0x080C0000)  // Sector 10èµ·å§‹åœ°å€
+#define FLASH_SECTOR_11_ADDR         (0x080E0000)  // Sector 11èµ·å§‹åœ°å€
+
+// æ‰‡åŒºå®šä¹‰
+#define FLASH_SECTOR                 (11)     // å‚æ•°å­˜å‚¨é¡µä½ç½® Sector 11
+#define PID_FLASH_SECTOR             (10)     // PIDå‚æ•°å­˜å‚¨é¡µä½ç½® Sector 10
+#define PID_PARAM_COUNT              (10)     // PIDå‚æ•°æœ€å¤§æ•°é‡
+
+// è¾…åŠ©å®å®šä¹‰
+#define IS_FLASH_PAGE_NUM(PAGE)      ((PAGE) < FLASH_PAGE_NUM_MAX)
+
 extern float test;
 extern flash_data_union flash_union_buffer[EEPROM_PAGE_LENGTH]; 
-void flash_set_buffer_PARA();
-void flash_get_buffer_PARA();
-void flash_set_buffer_PID(uint16_t page_offset) ;
+
+// å‡½æ•°å£°æ˜
+void flash_set_buffer_PARA(void);
+void flash_get_buffer_PARA(void);
+HAL_StatusTypeDef flash_set_buffer_PID(float *pid_params, uint16_t param_count);
+HAL_StatusTypeDef flash_get_buffer_PID(float *pid_params, uint16_t param_count);
+void flash_buffer_clear(void);
+HAL_StatusTypeDef flash_write_page(uint32_t page_num);
+void stm32_flash_erase_page(uint32_t page_num);
+void flash_read_page_to_buffer(uint32_t sector_num, uint32_t page_num);
+
 #endif
