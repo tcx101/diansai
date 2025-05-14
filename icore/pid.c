@@ -77,23 +77,49 @@ void saveThePidParameter(void) {
     servo2_I = servo2.i;
     servo2_D = servo2.d;
     
-    float pid_params[6] = {servo1_P, servo1_I, servo1_D, servo2_P, servo2_I, servo2_D};
-    if (flash_set_buffer_PID(pid_params, 6) != HAL_OK) {
+    // 创建参数数组
+    float pid_params[PID_TOTAL_PARAMS];
+    pid_params[0] = servo1_P;
+    pid_params[1] = servo1_I;
+    pid_params[2] = servo1_D;
+    pid_params[3] = servo2_P;
+    pid_params[4] = servo2_I;
+    pid_params[5] = servo2_D;
+    
+    // 验证参数有效性
+    for (uint8_t i = 0; i < PID_TOTAL_PARAMS; i++) {
+        if (!is_valid_param(pid_params[i])) {
+            // 参数无效，不保存
+            return;
+        }
+    }
+    
+    // 只调用一次保存函数
+    HAL_StatusTypeDef status = flash_set_buffer_PID(pid_params, PID_TOTAL_PARAMS);
+    if (status != HAL_OK) {
         // 保存失败处理（如有需要）
     }
 }
 
 // 读取pid参数
 void getThePidParameter(void) {
-    float pid_params[6];
+    float pid_params[PID_TOTAL_PARAMS];
     HAL_StatusTypeDef status;
     
-    status = flash_get_buffer_PID(pid_params, 6);
+    status = flash_get_buffer_PID(pid_params, PID_TOTAL_PARAMS);
     
     // 检查读取状态和参数有效性
-    if (status != HAL_OK || !is_valid_param(pid_params[0])) {
-        // Flash中无有效数据，使用当前值
+    if (status != HAL_OK) {
+        // Flash读取失败，使用当前值
         return;
+    }
+    
+    // 验证参数有效性
+    for (uint8_t i = 0; i < PID_TOTAL_PARAMS; i++) {
+        if (!is_valid_param(pid_params[i])) {
+            // 参数无效，使用当前值
+            return;
+        }
     }
     
     // 更新全局变量
@@ -129,26 +155,40 @@ void init_pid_parameters(void) {
     pid_init(&servo2, POSITION_PID, servo2_P, servo2_I, servo2_D);
     
     // 尝试从Flash加载之前保存的PID参数
-    float pid_params[6];
+    float pid_params[PID_TOTAL_PARAMS];
     HAL_StatusTypeDef status;
     
-    status = flash_get_buffer_PID(pid_params, 6);
+    status = flash_get_buffer_PID(pid_params, PID_TOTAL_PARAMS);
     
     // 检查是否成功读取到有效参数
-    if (status == HAL_OK && is_valid_param(pid_params[0])) {
-        // 更新全局变量
-        servo1_P = pid_params[0];
-        servo1_I = pid_params[1];
-        servo1_D = pid_params[2];
-        servo2_P = pid_params[3];
-        servo2_I = pid_params[4];
-        servo2_D = pid_params[5];
+    if (status == HAL_OK) {
+        // 验证所有参数
+        uint8_t all_valid = 1; // 假设所有参数有效
+        for (uint8_t i = 0; i < PID_TOTAL_PARAMS; i++) {
+            if (!is_valid_param(pid_params[i])) {
+                all_valid = 0;
+                break;
+            }
+        }
         
-        // 重新初始化PID控制器
-        pid_init(&servo1, POSITION_PID, servo1_P, servo1_I, servo1_D);
-        pid_init(&servo2, POSITION_PID, servo2_P, servo2_I, servo2_D);
+        if (all_valid) {
+            // 更新全局变量
+            servo1_P = pid_params[0];
+            servo1_I = pid_params[1];
+            servo1_D = pid_params[2];
+            servo2_P = pid_params[3];
+            servo2_I = pid_params[4];
+            servo2_D = pid_params[5];
+            
+            // 重新初始化PID控制器
+            pid_init(&servo1, POSITION_PID, servo1_P, servo1_I, servo1_D);
+            pid_init(&servo2, POSITION_PID, servo2_P, servo2_I, servo2_D);
+        } else {
+            // 有参数无效，使用默认值并保存
+            saveThePidParameter();
+        }
     } else {
-        // Flash中无有效数据，使用默认值并保存到Flash
+        // Flash读取失败或无数据，使用默认值并保存到Flash
         saveThePidParameter();
     }
 }

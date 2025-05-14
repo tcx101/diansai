@@ -1,5 +1,239 @@
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'diansai'
+compiling servo.c...
+..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+..\icore\KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+..\icore\KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+..\icore\lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+..\icore\uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+..\icore\uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+..\icore\uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\servo.c: 14 warnings, 0 errors
+compiling image.c...
+..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+..\icore\KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+..\icore\KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+..\icore\lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+..\icore\uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+..\icore\uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+..\icore\uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\image.c: 14 warnings, 0 errors
+compiling KEY.c...
+..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+..\icore\KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+..\icore\KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+..\icore\lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+..\icore\uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+..\icore\uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+..\icore\uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\KEY.c(117): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo1_P+=0.1;}
+..\icore\KEY.c(120): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo1_I+=0.01;}
+..\icore\KEY.c(123): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo1_D+=0.1;}	
+..\icore\KEY.c(126): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo2_P+=0.1;}
+..\icore\KEY.c(129): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo2_I+=0.01;}	
+..\icore\KEY.c(132): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo2_D+=0.1;}	
+..\icore\KEY.c(144): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo1_P-=0.1;}
+..\icore\KEY.c(147): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo1_I-=0.01;}
+..\icore\KEY.c(150): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo1_D-=0.1;}	
+..\icore\KEY.c(153): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo2_P-=0.1;}
+..\icore\KEY.c(156): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo2_I-=0.01;}	
+..\icore\KEY.c(159): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		{servo2_D-=0.1;}
+..\icore\KEY.c: 26 warnings, 0 errors
+compiling ISR.c...
+..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+..\icore\KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+..\icore\KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+..\icore\lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+..\icore\uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+..\icore\uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+..\icore\uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\ISR.c: 14 warnings, 0 errors
+compiling stm32f4xx_it.c...
+../icore/KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+../icore/KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+../icore/KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+../icore/lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+../icore/uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+../icore/uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+../icore/uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+../icore/uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+../icore/pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+../icore/pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+../icore/control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+../icore/control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+../icore/control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+../icore/ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+../Core/Src/stm32f4xx_it.c: 14 warnings, 0 errors
+compiling main.c...
+../icore/KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+../icore/KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+../icore/KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+../icore/lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+../icore/uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+../icore/uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+../icore/uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+../icore/uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+../icore/pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+../icore/pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+../icore/control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+../icore/control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+../icore/control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+../icore/ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+../Core/Src/main.c: 14 warnings, 0 errors
+compiling control.c...
+..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+..\icore\KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+..\icore\KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+..\icore\lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+..\icore\uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+..\icore\uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+..\icore\uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\control.c: 14 warnings, 0 errors
 compiling ALL_Init.c...
 ..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
   void key_scan();
@@ -17,15 +251,201 @@ compiling ALL_Init.c...
   void uart_T_no();
 ..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
   void uart_R_test();
-..\icore\pid.h(31): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
   void PID_servo1();
-..\icore\pid.h(33): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
   void PID_servo2();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
 ..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
   void All_init();
-..\icore\ALL_Init.c: 11 warnings, 0 errors
+..\icore\ALL_Init.c: 14 warnings, 0 errors
+compiling pid.c...
+..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+..\icore\KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+..\icore\KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+..\icore\lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+..\icore\uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+..\icore\uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+..\icore\uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+..\icore\pid.c: 14 warnings, 0 errors
+compiling uart.c...
+..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+..\icore\KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+..\icore\KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+..\icore\lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+..\icore\uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+..\icore\uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+..\icore\uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\uart.c: 14 warnings, 0 errors
+compiling flash.c...
+..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+..\icore\KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+..\icore\KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+..\icore\lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+..\icore\uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+..\icore\uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+..\icore\uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\flash.c: 14 warnings, 0 errors
+compiling chuankou.c...
+../icore/KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+../icore/KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+../icore/KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+../icore/lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+../icore/uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+../icore/uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+../icore/uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+../icore/uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+../icore/pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+../icore/pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+../icore/control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+../icore/control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+../icore/control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+../icore/ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\chuankou.c: 14 warnings, 0 errors
+compiling lcd_init.c...
+..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+..\icore\KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+..\icore\KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+..\icore\uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+..\icore\uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+..\icore\uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+..\icore\lcd_init.c: 14 warnings, 0 errors
+compiling lcd.c...
+..\icore\KEY.h(17): warning:  #1295-D: Deprecated declaration key_scan - give arg types
+  void key_scan();
+..\icore\KEY.h(18): warning:  #1295-D: Deprecated declaration key_start - give arg types
+  void key_start();
+..\icore\KEY.h(19): warning:  #1295-D: Deprecated declaration key_function - give arg types
+  void key_function();
+..\icore\uart.h(4): warning:  #1295-D: Deprecated declaration uart_R_start - give arg types
+  void uart_R_start();
+..\icore\uart.h(5): warning:  #1295-D: Deprecated declaration uart_T_yes - give arg types
+  void uart_T_yes();
+..\icore\uart.h(6): warning:  #1295-D: Deprecated declaration uart_T_no - give arg types
+  void uart_T_no();
+..\icore\uart.h(7): warning:  #1295-D: Deprecated declaration uart_R_test - give arg types
+  void uart_R_test();
+..\icore\pid.h(36): warning:  #1295-D: Deprecated declaration PID_servo1 - give arg types
+  void PID_servo1();
+..\icore\pid.h(38): warning:  #1295-D: Deprecated declaration PID_servo2 - give arg types
+  void PID_servo2();
+..\icore\control.h(6): warning:  #1295-D: Deprecated declaration control_A - give arg types
+  void control_A();
+..\icore\control.h(7): warning:  #1295-D: Deprecated declaration control_mid - give arg types
+  void control_mid();
+..\icore\control.h(8): warning:  #1295-D: Deprecated declaration control_A_B - give arg types
+  void control_A_B();
+..\icore\ALL_INIT.h(4): warning:  #1295-D: Deprecated declaration All_init - give arg types
+  void All_init();
+..\icore\lcd.h(26): warning:  #1295-D: Deprecated declaration LCD_show - give arg types
+  void LCD_show();
+..\icore\lcd.c: 14 warnings, 0 errors
 linking...
-Program Size: Code=20092 RO-data=15212 RW-data=60 ZI-data=13420  
+Program Size: Code=21888 RO-data=15212 RW-data=72 ZI-data=13424  
 FromELF: creating hex file...
-"diansai\diansai.axf" - 0 Error(s), 11 Warning(s).
-Build Time Elapsed:  00:00:02
+"diansai\diansai.axf" - 0 Error(s), 208 Warning(s).
+Build Time Elapsed:  00:00:03

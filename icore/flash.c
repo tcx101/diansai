@@ -170,29 +170,8 @@ HAL_StatusTypeDef flash_set_buffer_PID(float *pid_params, uint16_t param_count) 
     // 3. 擦除Flash扇区
     stm32_flash_erase_page(PID_FLASH_SECTOR);
 
-    // 4. 写入Flash
-    uint32_t address = get_flash_page_address(PID_FLASH_SECTOR);
-
-    // 获取双字指针（64位对齐）
-    uint64_t *buffer = (uint64_t *)flash_union_buffer;
-    uint32_t words_to_write = EEPROM_PAGE_LENGTH / 8; // 计算双字数
-
-    // 解锁Flash
-    HAL_FLASH_Unlock();
-
-    // 按双字写入数据
-    for (uint32_t i = 0; i < words_to_write; i++) {
-        if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, 
-                            address + (i * 8), 
-                            buffer[i]) != HAL_OK) {
-            HAL_FLASH_Lock();
-            return HAL_ERROR; // 写入失败
-        }
-    }
-
-    // 重新加锁Flash
-    HAL_FLASH_Lock();
-    return HAL_OK;
+    // 4. 直接写入Flash扇区
+    return flash_write_page(PID_FLASH_SECTOR);
 }
 
 /**
@@ -207,8 +186,8 @@ HAL_StatusTypeDef flash_get_buffer_PID(float *pid_params, uint16_t param_count) 
         return HAL_ERROR; // 参数错误
     }
 
-    // 读取Flash页到缓冲区
-    flash_read_page_to_buffer(PID_FLASH_SECTOR, 0);
+    // 读取Flash扇区到缓冲区（使用与写入相同的扇区号）
+    flash_read_page_to_buffer(PID_FLASH_SECTOR, PID_FLASH_SECTOR);
 
     // 从缓冲区获取PID参数
     for (uint16_t i = 0; i < param_count; i++) {

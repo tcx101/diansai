@@ -2,6 +2,11 @@
 #define __PID_h_
 #include "headfile.h"
 
+// PID参数定义
+#define PID_SERVO_COUNT        2   // 舵机数量
+#define PID_PARAMS_PER_SERVO   3   // 每个舵机的PID参数数(P/I/D)
+#define PID_TOTAL_PARAMS       (PID_SERVO_COUNT * PID_PARAMS_PER_SERVO)  // 总参数数量
+
 enum
 {
   POSITION_PID,  // 位置式
