@@ -63,8 +63,10 @@ void PID_servo2()
 
 // 参数有效性检查函数，替代isnan
 uint8_t is_valid_param(float value) {
-    // 检查参数是否在合理范围内
-    return (value > 0.001f && value < 1000.0f);
+    // 放宽检查条件，只要不是无穷大或NaN即可
+    volatile uint32_t *v = (volatile uint32_t *)&value;
+    uint32_t mask = 0x7F800000; // 指数部分全为1的掩码
+    return (*v & mask) != mask; // 如果指数部分都是1，则可能是INF或NaN
 }
 
 // 将pid参数保存到flash中

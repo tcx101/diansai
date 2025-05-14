@@ -16,7 +16,7 @@ void key_scan()
 			if(key[i].key_level==0)
 			{
 				key[i].key_state++;
-				//������
+				//按下按键
 				key[i].key_time=0;
 				break;
 			}
@@ -37,17 +37,17 @@ void key_scan()
 		{
 			if(key[i].key_level==0)
 			{
-				/*������ģʽ*/
+				/*长按键模式*/
 				key[i].key_time++;
         break;				
 			}
 		else
 		 {
-//			 /*�̰���ģʽ*/
+//			 /*短按键模式*/
 //			 key[i].key_state=0;
 //			 key[i].key_flag=1;
 //			 break;
-		 /*������ģʽ*/
+		 /*长按键模式*/
 			 if(key[i].key_time>=50)
 			 {key[i].key_longflag=1;
 				key[i].key_state=0; 
@@ -109,7 +109,7 @@ void key_function()
 	
 		else if(key[2].key_flag==1)
 	{	
-		
+		char debug_str[50];
 		key[2].key_flag=0;
 		control_mid();
 		AB_flag=0;
@@ -132,7 +132,15 @@ void key_function()
 		{servo2_D+=0.1;}	
 		
 	  pid_init(&servo1,POSITION_PID,servo1_P,servo1_I,servo1_D);	
-	  pid_init(&servo2,POSITION_PID,servo2_P,servo2_I,servo2_D);		
+	  pid_init(&servo2,POSITION_PID,servo2_P,servo2_I,servo2_D);	
+      
+      // 打印当前PID参数（调试用）
+      sprintf(debug_str, "PID(+): %.2f,%.2f,%.2f,%.2f\r\n", 
+              servo1_P, servo1_I, servo1_D, servo2_P);
+      HAL_UART_Transmit(&huart1, (uint8_t *)debug_str, strlen(debug_str), 100);
+      
+      // 更新舵机PID参数后保存到Flash
+      saveThePidParameter();	
 	}
 	
 	else if(key[3].key_flag==1)
@@ -159,6 +167,9 @@ void key_function()
 		{servo2_D-=0.1;}
 	 pid_init(&servo1,POSITION_PID,servo1_P,servo1_I,servo1_D);	
 	 pid_init(&servo2,POSITION_PID,servo2_P,servo2_I,servo2_D);
+     
+     // 更新舵机PID参数后保存到Flash
+     saveThePidParameter();
 		
 	}	
 }

@@ -154,10 +154,18 @@ void flash_get_buffer_PARA(void) {
   * @retval HAL_StatusTypeDef 操作状态
   */
 HAL_StatusTypeDef flash_set_buffer_PID(float *pid_params, uint16_t param_count) {
+    char debug_str[50];
     // 参数检查
     if (pid_params == NULL || param_count > PID_PARAM_COUNT) {
+        sprintf(debug_str, "PID Save Error: Invalid params\r\n");
+        HAL_UART_Transmit(&huart1, (uint8_t *)debug_str, strlen(debug_str), 100);
         return HAL_ERROR; // 参数错误
     }
+
+    // 打印要保存的参数值（调试用）
+    sprintf(debug_str, "Save PID: %.2f,%.2f,%.2f,%.2f\r\n", 
+            pid_params[0], pid_params[1], pid_params[2], pid_params[3]);
+    HAL_UART_Transmit(&huart1, (uint8_t *)debug_str, strlen(debug_str), 100);
 
     // 1. 清除缓冲区
     flash_buffer_clear();
@@ -167,11 +175,44 @@ HAL_StatusTypeDef flash_set_buffer_PID(float *pid_params, uint16_t param_count) 
         flash_union_buffer[i].float_type = pid_params[i];
     }
 
-    // 3. 擦除Flash扇区
+    // 3. 擦除Flash扇区 - 使用扇区11
     stm32_flash_erase_page(PID_FLASH_SECTOR);
-
-    // 4. 直接写入Flash扇区
-    return flash_write_page(PID_FLASH_SECTOR);
+    
+    // 为PID参数预留专门的位置，使用扇区11的后半部分
+    // 使用0x080E0800作为PID参数的起始地址 (扇区11起始地址+2KB偏移)
+    uint32_t base_address = FLASH_SECTOR_11_ADDR;
+    uint32_t pid_offset = 512; // 在扇区内偏移512字节
+    uint32_t address = base_address + pid_offset;
+    
+    // 获取双字指针（64位对齐）
+    uint64_t *buffer = (uint64_t *)flash_union_buffer;
+    uint32_t words_to_write = param_count * sizeof(float) / 8 + 1; // 只写入所需的数据量
+    if (words_to_write == 0) words_to_write = 1;
+    
+    HAL_StatusTypeDef status;
+    
+    // 解锁Flash
+    HAL_FLASH_Unlock();
+    
+    // 按双字写入数据
+    for (uint32_t i = 0; i < words_to_write; i++) {
+        status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, 
+                        address + (i * 8), 
+                        buffer[i]);
+        if (status != HAL_OK) {
+            sprintf(debug_str, "Flash Write Error: %d at %d\r\n", (int)status, i);
+            HAL_UART_Transmit(&huart1, (uint8_t *)debug_str, strlen(debug_str), 100);
+            HAL_FLASH_Lock();
+            return HAL_ERROR;
+        }
+    }
+    
+    // 重新加锁Flash
+    HAL_FLASH_Lock();
+    
+    sprintf(debug_str, "PID Save OK at 0x%08X\r\n", (unsigned int)address);
+    HAL_UART_Transmit(&huart1, (uint8_t *)debug_str, strlen(debug_str), 100);
+    return HAL_OK;
 }
 
 /**
@@ -181,18 +222,26 @@ HAL_StatusTypeDef flash_set_buffer_PID(float *pid_params, uint16_t param_count) 
   * @retval HAL_StatusTypeDef 操作状态
   */
 HAL_StatusTypeDef flash_get_buffer_PID(float *pid_params, uint16_t param_count) {
+    char debug_str[50];
     // 参数检查
     if (pid_params == NULL || param_count > PID_PARAM_COUNT) {
+        sprintf(debug_str, "PID Read Error: Invalid params\r\n");
+        HAL_UART_Transmit(&huart1, (uint8_t *)debug_str, strlen(debug_str), 100);
         return HAL_ERROR; // 参数错误
     }
 
-    // 读取Flash扇区到缓冲区（使用与写入相同的扇区号）
-    flash_read_page_to_buffer(PID_FLASH_SECTOR, PID_FLASH_SECTOR);
-
-    // 从缓冲区获取PID参数
-    for (uint16_t i = 0; i < param_count; i++) {
-        pid_params[i] = flash_union_buffer[i].float_type;
-    }
+    // 使用与写入相同的地址计算
+    uint32_t base_address = FLASH_SECTOR_11_ADDR;
+    uint32_t pid_offset = 512; // 在扇区内偏移512字节
+    uint32_t flash_addr = base_address + pid_offset;
+    
+    // 直接从Flash读取数据
+    memcpy(pid_params, (void*)flash_addr, param_count * sizeof(float));
+    
+    // 打印读取到的值（调试用）
+    sprintf(debug_str, "Read PID from 0x%08X: %.2f,%.2f,%.2f,%.2f\r\n", 
+            (unsigned int)flash_addr, pid_params[0], pid_params[1], pid_params[2], pid_params[3]);
+    HAL_UART_Transmit(&huart1, (uint8_t *)debug_str, strlen(debug_str), 100);
     
     return HAL_OK;
 }

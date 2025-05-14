@@ -26,7 +26,7 @@ typedef union                                                                   
 
 // 扇区定义
 #define FLASH_SECTOR                 (11)     // 参数存储页位置 Sector 11
-#define PID_FLASH_SECTOR             (10)     // PID参数存储页位置 Sector 10
+#define PID_FLASH_SECTOR             (11)     // PID参数存储页位置，修改为使用Sector 11
 #define PID_PARAM_COUNT              (10)     // PID参数最大数量
 
 // 辅助宏定义
